@@ -10,13 +10,14 @@ agregar.addEventListener('click', ()=>{
     if(!codigo || !nombre || !cantidad || !costo){
         document.getElementById('detalles').innerHTML= `<p>Es necesario llenar todos los campos</p>`;
     }else{
-        if(inventario.buscar(codigo) !== null){
+       /*if(inventario.buscar(codigo) !== null){
             document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" no puede ser registrado <br> debido a que el código "${codigo}" ya existe</p>`;
            
-        }else{
+        }else{*/
             inventario.agregar(producto);
             document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" fue agregado correctamente</p>`;
-        }
+            
+        //}
     }
 
 });
@@ -29,7 +30,7 @@ buscar.addEventListener('click', ()=>{
     if(buscado ===  null){
         document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
     }else{
-        document.getElementById('detalles1').innerHTML = `<p>${buscado.getInfo()}</p>`;
+        document.getElementById('detalles1').innerHTML = `<p>${buscado.getInfo()}  </p>`;
     }
 });
 
@@ -38,7 +39,7 @@ eliminar.addEventListener('click', ()=>{
     let codigo = document.getElementById('busqueda').value;
     let eliminado = inventario.eliminar(codigo);
 
-    if(eliminado === -1){
+    if(eliminado === null){
         document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
     }else{
         document.getElementById('detalles1').innerHTML = `<p>El producto con el código ${codigo} fue eliminado. </p>`;

@@ -1,29 +1,13 @@
 class Producto{
-    constructor(codigo, nombre, cantidad, presio){
-        this._codigo = codigo;
-        this._nombre = nombre;
-        this._cantidad = cantidad;
-        this._presio = presio;
-        this._siguente = null;
-    }
-
-    getCodigo(){
-        return this._codigo;
-    }
-
-    getNombre(){
-        return this._nombre;
-    }
-
-    getCantidad(){
-        return this._cantidad;
-    }
-
-    getPresio(){
-        return this._presio;
+    constructor(codigo, nombre, cantidad, precio){
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.siguiente = null;
     }
     
     getInfo(){
-        return `${this._codigo} :  ${this._nombre} : (${this._cantidad}) : $ ${this._presio}`;
+        return `Código: ${this.codigo} ->  Nombre: ${this.nombre} -> Cantidad(${this.cantidad}) -> Precio: $ ${this.precio} -> Siguiente:  ${this.siguiente}`;
     }
 }
