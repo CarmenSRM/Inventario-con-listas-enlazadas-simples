@@ -66,7 +66,21 @@ class Inventario{
 
   insertar(posicion, producto){
     let nuevo = producto;
+    let ultimo = this.primero;
 
+    if(ultimo !== null){
+      if(posicion == 1){
+        nuevo.siguiente = this.primero;
+        this.primero = nuevo;
+      }else{
+        for(let i = 0; i < posicion-2; i++){
+          ultimo = ultimo.siguiente;
+        }
+        nuevo.siguiente = ultimo.siguiente;
+        ultimo.siguiente = nuevo;
+      }
+    }
+    return ultimo;
   }
     
   listado(){
