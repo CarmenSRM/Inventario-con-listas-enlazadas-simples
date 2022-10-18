@@ -1,4 +1,5 @@
 const inventario = new Inventario();
+
 const agregar = document.getElementById('Agregar');
 agregar.addEventListener('click', ()=>{
     let codigo = document.getElementById('codigo').value;
@@ -8,18 +9,37 @@ agregar.addEventListener('click', ()=>{
     let producto = new Producto(codigo, nombre, cantidad, costo);
 
     if(!codigo || !nombre || !cantidad || !costo){
-        document.getElementById('detalles').innerHTML= `<p>Es necesario llenar todos los campos</p>`;
+        document.getElementById('detalles').innerHTML= `<p>Es necesario llenar los campos de Código, Nombre, Cantidad y costo</p>`;
     }else{
        if(inventario.buscar(codigo) !== null){
             document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" no puede ser registrado <br> debido a que el código "${codigo}" ya existe</p>`;
-           
         }else{
             inventario.agregar(producto);
             document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" fue agregado correctamente</p>`;
-
         }
     }
 
+});
+
+const insertar = document.getElementById('Insertar');
+insertar.addEventListener('click', ()=>{
+    let codigo = document.getElementById('codigo').value;
+    let nombre = document.getElementById('nombre').value;
+    let cantidad = document.getElementById('cantidad').value;
+    let costo = document.getElementById('costo').value;
+    let posicion = document.getElementById('posicion').value;
+    let producto = new Producto(codigo, nombre, cantidad, costo);
+
+    if(!codigo || !nombre || !cantidad || !costo || !posicion){
+        document.getElementById('detalles').innerHTML= `<p>Es necesario llenar los campos de Código, Nombre, Cantidad, Costo y Posición.</p>`;
+    }else{
+        if(inventario.buscar(codigo) !== null){
+            document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" no puede ser registrado <br> debido a que el código "${codigo}" ya existe</p>`;
+        }else{
+            inventario.insertar(posicion, producto);
+            document.getElementById('detalles').innerHTML= `<p>El producto "${nombre}" fue agregado correctamente</p>`;
+        }
+    }
 });
 
 const buscar = document.getElementById('Buscar');
@@ -27,10 +47,14 @@ buscar.addEventListener('click', ()=>{
     let codigo = document.getElementById('busqueda').value;
     let buscado = inventario.buscar(codigo);
 
-    if(buscado ===  null){
-        document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
+    if(!codigo){
+        document.getElementById('detalles1').innerHTML = `<p>Es nesesario indicar un código. </p>`;
     }else{
-        document.getElementById('detalles1').innerHTML = `<p>${buscado.getInfo()}  </p>`;
+        if(buscado ===  null){
+            document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
+        }else{
+            document.getElementById('detalles1').innerHTML = `<p>${buscado.getInfo()}  </p>`;
+        }
     }
 });
 
@@ -39,10 +63,14 @@ eliminar.addEventListener('click', ()=>{
     let codigo = document.getElementById('busqueda').value;
     let eliminado = inventario.eliminar(codigo);
 
-    if(eliminado === null){
-        document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
+    if(!codigo){
+        document.getElementById('detalles1').innerHTML = `<p>Es nesesario indicar un código. </p>`;
     }else{
-        document.getElementById('detalles1').innerHTML = `<p>El producto con el código ${codigo} fue eliminado. </p>`;
+        if(eliminado === null){
+            document.getElementById('detalles1').innerHTML = `<p>No se encontro registro de un producto con el código "${codigo}". </p>`;
+        }else{
+            document.getElementById('detalles1').innerHTML = `<p>El producto con el código ${codigo} fue eliminado. </p>`;
+        }
     }
 });
 
