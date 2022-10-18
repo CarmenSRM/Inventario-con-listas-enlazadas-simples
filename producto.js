@@ -6,8 +6,7 @@ class Producto{
         this.precio = precio;
         this.siguiente = null;
     }
-    
     getInfo(){
-        return `Código: ${this.codigo} ->  Nombre: ${this.nombre} -> Cantidad(${this.cantidad}) -> Precio: $ ${this.precio} -> Siguiente:  ${this.siguiente}`;
+        return `Código: ${this.codigo} ->  Nombre: ${this.nombre} -> Cantidad(${this.cantidad}) -> Precio: $ ${this.precio}`;
     }
 }
